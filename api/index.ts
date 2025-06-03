@@ -8,8 +8,16 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith("/api/pendaftaransanbas")) {
-      let { results } = await env.DB.prepare("SELECT * FROM pendaftaransanbas").all();
-      return Response.json(results);
+        if (request.method == 'GET') {
+        let { results } = await env.DB.prepare("SELECT * FROM events").all();
+        return Response.json(results);
+      } else if (request.method == 'POST') {
+        const newId = crypto.randomUUID()
+        const input = await request.json<any>()
+        const query = `INSERT INTO events(id,name,place,time) values ("${newId}","${input.name}","${input.place}",${input.time})`;
+        const newEvent = await env.DB.exec(query);
+        return Response.json(newEvent);
+      }
     }
     return env.ASSETS.fetch(request);
  },

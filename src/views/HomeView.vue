@@ -40,7 +40,7 @@ onMounted(() => {
           <div>{{ pendaftaransanba.email }}</div>
           <div>{{ pendaftaransanba.address }}</div>
           <div>{{ pendaftaransanba.school }}</div>
-          <div>{{ pendaftaransanba.time }}</div>
+          <div>{{ new Date(Number(pendaftaransanba.time) * 1000). toLocaleString()}}</div>
         </li>
       </ul>
     </div>
