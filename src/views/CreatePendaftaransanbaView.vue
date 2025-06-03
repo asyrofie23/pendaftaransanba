@@ -5,19 +5,25 @@ import { useRouter } from 'vue-router'
 const router = useRouter();
 
 const name = ref('')
-const place = ref('')
+const phone = ref('')
+const email = ref('')
+const address = ref('')
+const school = ref('')
 const time = ref('')
 
 const saveData = async () => {
-    const newEvent = JSON.stringify({
+    const newPendaftaransanba = JSON.stringify({
         name: name.value,
-        place: place.value,
+        phone: phone.value,
+        email: email.value,
+        address: address.value,
+        school: school.value,
         time: Date.parse(time.value)/1000,
     })
 
-    const response = await fetch('/api/events', {
+    const response = await fetch('/api/pendaftaransanbas', {
         method:'POST',
-        body: newEvent,
+        body: newPendaftaransanba,
     })
     const data = await response.json()
 
@@ -33,9 +39,27 @@ const saveData = async () => {
             <label>Nama</label>
             <input type="text" v-model="name">
         </div>
+         <div>
+            <label>phone</label>
+            <input type="text" v-model="phone">
+        </div>
+        <div>
+            <label>Waktu</label>
+            <input type="datetime-local" v-model="email">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
         <div>
             <label>Tempat</label>
-            <input type="text" v-model="place">
+            <input type="text" v-model="address">
+        </div>
+        <div>
+            <label>Waktu</label>
+            <input type="datetime-local" v-model="school">
+        </div>
+        <div>
+            <input type="submit">
         </div>
         <div>
             <label>Waktu</label>

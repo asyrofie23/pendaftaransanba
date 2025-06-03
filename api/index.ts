@@ -9,14 +9,14 @@ export default {
 
     if (url.pathname.startsWith("/api/pendaftaransanbas")) {
         if (request.method == 'GET') {
-        let { results } = await env.DB.prepare("SELECT * FROM events").all();
+        let { results } = await env.DB.prepare("SELECT * FROM pendaftaransanbas").all();
         return Response.json(results);
       } else if (request.method == 'POST') {
         const newId = crypto.randomUUID()
         const input = await request.json<any>()
-        const query = `INSERT INTO events(id,name,place,time) values ("${newId}","${input.name}","${input.place}",${input.time})`;
-        const newEvent = await env.DB.exec(query);
-        return Response.json(newEvent);
+        const query = `INSERT INTO pendaftaransanbas(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}","${input.time}")`;
+        const newPendaftaransanba = await env.DB.exec(query);
+        return Response.json(newPendaftaransanba);
       }
     }
     return env.ASSETS.fetch(request);
