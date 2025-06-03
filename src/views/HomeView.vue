@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-interface Event {
+interface Pendaftaransanba {
   id: number
   name: string
   phone: number
@@ -11,29 +11,32 @@ interface Event {
   time: string
 }
 
-const events = ref<Event[]>([])
+const pendaftaransanbas = ref<Pendaftaransanba[]>([])
 
-const fetchEvents = async () => {
-  const response = await fetch('/api/events')
+const fetchPendaftaransanbas = async () => {
+  const response = await fetch('/api/pendaftaransanbas')
   const data = await response.json()
-  events.value = data
+  pendaftaransanbas.value = data
 }
 
 onMounted(() => {
-  fetchEvents()
+  fetchPendaftaransanbas()
 })
 </script>
 
 <template>
   <main>
-    <div>Form Pendaftaran</div>Add commentMore actions
+    <div>Form Pendaftaran</div>
 
     <div>
       <ul>
-        <li v-for="event in events" :key="event.id">
-          <div>{{ event.name }}</div>
-          <div>{{ event.place }}</div>
-          <div>{{ event.time }}</div>
+        <li v-for="pendaftaransanba in pendaftaransanbas" :key="pendaftaransanba.id">
+          <div>{{ pendaftaransanba.name }}</div>
+          <div>{{ pendaftaransanba.phone }}</div>
+          <div>{{ pendaftaransanba.email }}</div>
+          <div>{{ pendaftaransanba.address }}</div>
+          <div>{{ pendaftaransanba.school }}</div>
+          <div>{{ pendaftaransanba.time }}</div>
         </li>
       </ul>
     </div>
