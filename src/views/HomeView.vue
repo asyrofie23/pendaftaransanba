@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'Add commentMore actions
+import { ref, onMounted } from 'vue'
 
 interface Event {
   id: number
   name: string
-  place: string
+  phone: number
+  email: string
+  address: string
+  school: string
   time: string
 }
 
@@ -23,7 +26,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <div>Daftar Event</div>Add commentMore actions
+    <div>Form Pendaftaran</div>Add commentMore actions
 
     <div>
       <ul>
