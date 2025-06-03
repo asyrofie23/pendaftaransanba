@@ -29,7 +29,7 @@ onMounted(() => {
   <main>
     <div>Form Pendaftaran</div>
     <div>
-      <RouterLink to="/pendaftaransanba">Buat Event</RouterLink>
+      <RouterLink to="/pendaftaransanba">Daftar Disini</RouterLink>
     </div>
 
     <div>
