@@ -33,7 +33,7 @@ const saveData = async () => {
 
 
 <template>
-    <h1>Buat Event Baru</h1>
+    <h1>Isi Formulir Disini</h1>
     <form @submit.prevent="saveData">
         <div>
             <label>Nama</label>
