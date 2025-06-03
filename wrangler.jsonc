@@ -1,5 +1,5 @@
 {
-  "name": "pendaftaran",
+  "name": "pendaftaransanba",
   "compatibility_date": "2024-12-30",
   "assets": { 
     "not_found_handling": "single-page-application",
@@ -9,8 +9,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "EVENT_MANAGER",
-      "database_id": "53edcc47-a87f-4b3f-9a5a-bde6f2467e11"
+      "database_name": "pendaftaransanba",
+      "database_id": "b893562b-3663-4529-9bb7-5f7fc10f6e20"
     }
   ]
 }
