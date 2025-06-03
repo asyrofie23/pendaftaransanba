@@ -40,26 +40,20 @@ const saveData = async () => {
             <input type="text" v-model="name">
         </div>
          <div>
-            <label>phone</label>
+            <label>Phone</label>
             <input type="text" v-model="phone">
         </div>
         <div>
-            <label>Waktu</label>
-            <input type="datetime-local" v-model="email">
+            <label>Email</label>
+            <input type="text" v-model="email">
         </div>
         <div>
-            <input type="submit">
-        </div>
-        <div>
-            <label>Tempat</label>
+            <label>Alamat</label>
             <input type="text" v-model="address">
         </div>
         <div>
-            <label>Waktu</label>
-            <input type="datetime-local" v-model="school">
-        </div>
-        <div>
-            <input type="submit">
+            <label>Asal Sekolah</label>
+            <input type="text" v-model="school">
         </div>
         <div>
             <label>Waktu</label>
