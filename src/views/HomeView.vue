@@ -41,6 +41,9 @@ onMounted(() => {
           <div>{{ pendaftaransanba.address }}</div>
           <div>{{ pendaftaransanba.school }}</div>
           <div>{{ new Date(Number(pendaftaransanba.time) * 1000). toLocaleString()}}</div>
+          <div>
+            <RouterLink :to="`/pendaftaransanba/${pendaftaransanba.id}`">Edit</RouterLink>
+          </div>
         </li>
       </ul>
     </div>
