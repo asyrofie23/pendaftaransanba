@@ -9,6 +9,16 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
+     {
+      path: '/pendaftaransanba',
+      name: 'create-pendaftaransanba',
+      component: () => import('../views/CreatePendaftaransanbaView.vue'),
+    },
+    {
+      path: '/pendaftaransanba/:id',
+      name: 'edit-pendaftaransanba',
+      component: () => import('../views/EditPendaftaransanbaView.vue'),
+    },
     {
       path: '/about',
       name: 'about',

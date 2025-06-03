@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
 interface Pendaftaransanba {
   id: number
@@ -27,6 +28,9 @@ onMounted(() => {
 <template>
   <main>
     <div>Form Pendaftaran</div>
+    <div>
+      <RouterLink to="/pendaftaransanba">Buat Event</RouterLink>
+    </div>
 
     <div>
       <ul>
