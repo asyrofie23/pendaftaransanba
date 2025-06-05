@@ -1,24 +1,23 @@
-interface Env {
-  ASSETS: Fetcher;
-  DB: D1Database;
+import { Hono } from 'hono'
+
+type Bindings = {
+  ASSETS: Fetcher
+  DB: D1Database
 }
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+const app = new Hono<{ Bindings: Bindings }>()
 
-    if (url.pathname.startsWith("/api/pendaftaransanbas")) {
-        if (request.method == 'GET') {
-        let { results } = await env.DB.prepare("SELECT * FROM pendaftaransanbas").all();
-        return Response.json(results);
-      } else if (request.method == 'POST') {
-        const newId = crypto.randomUUID()
-        const input = await request.json<any>()
-        const query = `INSERT INTO pendaftaransanbas(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}","${input.time}")`;
-        const newPendaftaransanba = await env.DB.exec(query);
-        return Response.json(newPendaftaransanba);
-      }
-    }
-    return env.ASSETS.fetch(request);
- },
-} satisfies ExportedHandler<Env>;
+app.get('/api/pendaftaransanbas', async (c) => {
+  let { results } = await c.env.DB.prepare("SELECT * FROM pendaftaransanbas").all()
+  return c.json(results)
+})
+app.post('/api/pendaftaransanbas', async (c) => {
+  const newId = crypto.randomUUID()
+  // const input = await c.req.json<any>()
+  // const query = `INSERT INTO pendaftransanbas(id,name,phone,email,place,time) values ("${newId}","${input.name}","${input.place}",${input.time})`
+  // const newEvent = await c.env.DB.exec(query)
+  // return c.json(newPendaftaransanba)
+  console.log(c)
+  return c.json({ message: 'Pendaftaransanba created successfully', id: newId })
+})
+  export default app
