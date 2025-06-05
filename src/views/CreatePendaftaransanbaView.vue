@@ -70,9 +70,6 @@ const saveData = async () => {
   <button type="button" @click="goBack">← Kembali</button>
 </div>
     </form>
-    <div class="back-button">
-  <button type="button" @click="goBack">← Kembali</button>
-</div>
   </main>
 </template>
 
