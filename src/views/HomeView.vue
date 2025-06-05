@@ -33,6 +33,7 @@ onMounted(() => {
 
 <template>
   <main class="container">
+     <img src="/logo.png" alt="Logo" class="logo" />
     <h1 class="title">Form Pendaftaran</h1>
     <div class="link-container">
       <RouterLink to="/pendaftaransanba" class="link-button">Daftar Disini</RouterLink>
@@ -66,9 +67,9 @@ onMounted(() => {
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -127,5 +128,10 @@ onMounted(() => {
 
 .edit-link a:hover {
   text-decoration: underline;
+}
+.logo {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto 1rem auto;
 }
 </style>
