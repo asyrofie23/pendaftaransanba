@@ -10,6 +10,9 @@ const email = ref('')
 const address = ref('')
 const school = ref('')
 const time = ref('')
+const goBack = () => {
+  router.back()
+}
 
 const saveData = async () => {
     const newPendaftaransanba = JSON.stringify({
@@ -63,7 +66,13 @@ const saveData = async () => {
       <div class="form-actions">
         <input type="submit" value="Kirim" />
       </div>
+      <div class="back-button">
+  <button type="button" @click="goBack">← Kembali</button>
+</div>
     </form>
+    <div class="back-button">
+  <button type="button" @click="goBack">← Kembali</button>
+</div>
   </main>
 </template>
 
@@ -130,5 +139,24 @@ const saveData = async () => {
 
 .form-actions input[type="submit"]:hover {
   background-color: #2980b9;
+}
+.back-button {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.back-button button {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-button button:hover {
+  background-color: #d5d5d5;
 }
 </style>
