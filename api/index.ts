@@ -14,7 +14,7 @@ app.get('/api/pendaftaransanbas', async (c) => {
 app.post('/api/pendaftaransanbas', async (c) => {
   const newId = crypto.randomUUID()
   const input = await c.req.json<any>()
-  const query = `INSERT INTO pendaftransanbas(id,name,phone,email,place,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.place}","${input.time}")`
+  const query = `INSERT INTO form(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}","${input.time}")`
   const newEvent = await c.env.DB.exec(query)
   // return c.json(newPendaftaransanba)
   console.log(input, 'input')
