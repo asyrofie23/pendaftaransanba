@@ -39,7 +39,7 @@ app.post("/api/pendaftaransanbas", async (c) => {
   await c.env.DB.prepare(
     `
     INSERT INTO users (id, name, phone, email, address, school, time)
-VALUES ("${newId}", "${input.name}", "${input.phone}", "${input.email}", "${input.address}", "${input.school}", "2025-06-16 10:00:00");
+VALUES ("${newId}", "${input.name}", "${input.phone}", "${input.email}", "${input.address}", "${input.school}", "${input.time}");
   `
   ).run();
 
