@@ -11,7 +11,7 @@ app.get("/api/pendaftaransanbas", async (c) => {
   console.log(c.env.DB, "DB");
   try {
     const tableExists = await c.env.DB.prepare(
-      "SELECT name FROM sqlite_master WHERE type='table' AND name='form'"
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='users'"
     ).all();
     console.log(tableExists, "tableExists");
     const allTables = await c.env.DB.prepare(
@@ -20,10 +20,10 @@ app.get("/api/pendaftaransanbas", async (c) => {
     console.log(allTables, "allTables");
 
     if (!tableExists) {
-      return c.json({ error: "Table 'form' does not exist" }, 404);
+      return c.json({ error: "Table 'users' does not exist" }, 404);
     }
 
-    const res = await c.env.DB.prepare("SELECT * FROM form").all();
+    const res = await c.env.DB.prepare("SELECT * FROM users").all();
     console.log(res, "res");
     return c.json(res.results);
   } catch (error) {
@@ -38,7 +38,7 @@ app.post("/api/pendaftaransanbas", async (c) => {
   console.log(newId, "newId");
   await c.env.DB.prepare(
     `
-    INSERT INTO form (id, name, phone, email, address, school, time)
+    INSERT INTO users (id, name, phone, email, address, school, time)
 VALUES (${newId}, ${input.name}, ${input.phone}, ${input.email}, ${input.address}, ${input.school}, 2025-06-16 10:00:00);
   `
   ).run();
