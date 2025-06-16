@@ -34,6 +34,7 @@ app.get("/api/pendaftaransanbas", async (c) => {
 app.post("/api/pendaftaransanbas", async (c) => {
   const newId = crypto.randomUUID();
   const input = await c.req.json<any>();
+  console.log(JSON.stringify(input), "input");
 
   await c.env.DB.prepare(
     `
@@ -41,13 +42,13 @@ app.post("/api/pendaftaransanbas", async (c) => {
   `
   )
     .bind(
-      newId,
-      input.name,
-      input.phone,
-      input.email,
-      input.address,
-      input.school,
-      input.time
+      3,
+      "John Doe",
+      "08123456789",
+      "john@example.com",
+      "123 Main St",
+      "Example High School",
+      "2025-06-16 10:00:00"
     )
     .run();
 
