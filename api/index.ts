@@ -35,11 +35,11 @@ app.post("/api/pendaftaransanbas", async (c) => {
   const newId = crypto.randomUUID();
   const input = await c.req.json<any>();
   console.log(JSON.stringify(input), "input");
-
+  console.log(newId, "newId");
   await c.env.DB.prepare(
     `
     INSERT INTO form (id, name, phone, email, address, school, time)
-VALUES (${newId}, ${input.name}, ${input.phone}, ${input.email}, ${input.address}, ${input.school}, ${input.time});
+VALUES (${newId}, ${input.name}, ${input.phone}, ${input.email}, ${input.address}, ${input.school}, 2025-06-16 10:00:00);
   `
   ).run();
 
