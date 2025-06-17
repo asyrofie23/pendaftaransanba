@@ -8,13 +8,13 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/api/pendaftaransanbas", async (c) => {
-  let { results } = await c.env.DB.prepare("SELECT * FROM events").all();
+  let { results } = await c.env.DB.prepare("SELECT * FROM users").all();
   return c.json(results);
 });
 app.post("/api/pendaftaransanbas", async (c) => {
   const newId = crypto.randomUUID();
   const input = await c.req.json<any>();
-  const query = `INSERT INTO pendaftaransanbas(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
+  const query = `INSERT INTO users(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
   const newEvent = await c.env.DB.exec(query);
   return c.json(newEvent);
 });
