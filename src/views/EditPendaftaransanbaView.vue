@@ -36,27 +36,27 @@ const saveData = async () => {
   <main class="form-container">
     <h1 class="form-title">Edit Event Baru</h1>
     <form @submit.prevent="saveData" class="form-box">
-      <div>
+      <div class="form-group">
         <label>Nama</label>
         <input type="text" v-model="name" required />
       </div>
-      <div>
+      <div class="form-group">
         <label>Phone</label>
         <input type="text" v-model="phone" required />
       </div>
-      <div>
+      <div class="form-group">
         <label>Email</label>
         <input type="email" v-model="email" required />
       </div>
-      <div>
+      <div class="form-group">
         <label>Alamat</label>
         <input type="text" v-model="address" required />
       </div>
-      <div>
+      <div class="form-group">
         <label>Asal Sekolah</label>
         <input type="text" v-model="school" required />
       </div>
-      <div>
+      <div class="form-group">
         <label>Waktu</label>
         <input type="datetime-local" v-model="time" required />
       </div>
