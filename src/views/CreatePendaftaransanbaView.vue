@@ -1,39 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const name = ref('')
-const phone = ref('')
-const email = ref('')
-const address = ref('')
-const school = ref('')
-const time = ref('')
+const name = ref("");
+const phone = ref("");
+const email = ref("");
+const address = ref("");
+const school = ref("");
+const time = ref("");
 const goBack = () => {
-  router.back()
-}
+  router.back();
+};
 
 const saveData = async () => {
-    const newPendaftaransanba = JSON.stringify({
-        name: name.value,
-        phone: phone.value,
-        email: email.value,
-        address: address.value,
-        school: school.value,
-        time: Date.parse(time.value)/1000,
-    })
+  const newPendaftaransanba = JSON.stringify({
+    name: name.value,
+    phone: phone.value,
+    email: email.value,
+    address: address.value,
+    school: school.value,
+    time: Date.parse(time.value) / 1000,
+  });
 
-    const response = await fetch('/api/pendaftaransanbas', {
-        method:'POST',
-        body: newPendaftaransanba,
-    })
-    const data = await response.json()
+  const response = await fetch("/api/pendaftaransanbas", {
+    method: "POST",
+    body: newPendaftaransanba,
+  });
+  const data = await response.json();
 
-    router.push('/')
-}
+  router.push("/");
+};
 </script>
-
 
 <template>
   <main class="form-container">
@@ -67,8 +66,8 @@ const saveData = async () => {
         <input type="submit" value="Kirim" />
       </div>
       <div class="back-button">
-  <button type="button" @click="goBack">← Kembali</button>
-</div>
+        <button type="button" @click="goBack">← Kembali</button>
+      </div>
     </form>
   </main>
 </template>
