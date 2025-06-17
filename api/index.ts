@@ -8,30 +8,39 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/api/pendaftaransanbas", async (c) => {
-  try {
-    const res = await c.env.DB.prepare("SELECT * FROM users").all();
-    return c.json(res.results);
-  } catch (error) {
-    console.error("Error fetching pendaftaransanbas:", error);
-    return c.json({ error: "Failed to fetch pendaftaransanbas" }, 500);
-  }
+  let { results } = await c.env.DB.prepare("SELECT * FROM users").all();
+  return c.json(results);
+  // try {
+  //   const res = await c.env.DB.prepare("SELECT * FROM users").all();
+  //   return c.json(res.results);
+  // } catch (error) {
+  //   console.error("Error fetching pendaftaransanbas:", error);
+  //   return c.json({ error: "Failed to fetch pendaftaransanbas" }, 500);
+  // }
 });
 
 app.post("/api/pendaftaransanbas", async (c) => {
   const newId = crypto.randomUUID();
   const input = await c.req.json<any>();
-  await c.env.DB.prepare(
-    `
-    INSERT INTO users (id, name, phone, email, address, school, time)
-VALUES ("${newId}", "${input.name}", "${input.phone}", "${input.email}", "${input.address}", "${input.school}", "${input.time}");
-  `
-  ).run();
-
+  const query = `INSERT INTO pendaftaransanbas (id, name, phone, email, address, school, time) VALUES ("${newId}", "${input.name}", "${input.phone}", "${input.email}", "${input.address}", "${input.school}", ${input.time})`;
+  const pendaftaransanba = await c.env.DB.exec(query);
   return c.json({
     message: "Pendaftaransanba created successfully",
     id: newId,
   });
 });
+// await c.env.DB.prepare(
+//     `
+//     INSERT INTO users (id, name, phone, email, address, school, time)
+// VALUES ("${newId}", "${input.name}", "${input.phone}", "${input.email}", "${input.address}", "${input.school}", "${input.time}");
+//   `
+// );
+
+// return c.json({
+//   // message: "Pendaftaransanba created successfully",
+//   // id: newId,
+// });
+
 app.get("/api/pendaftaransanbas/:id", async (c) => {
   const pendaftaransanbaId = c.req.param("id");
   let { results } = await c.env.DB.prepare(
