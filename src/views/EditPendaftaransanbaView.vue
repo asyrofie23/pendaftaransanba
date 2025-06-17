@@ -33,40 +33,41 @@ const saveData = async () => {
 };
 </script>
 <template>
-  <main class="form-container"></main>
-  <h1 class="form-title">Edit Event Baru</h1>
-  <form @submit.prevent="saveData" class="form-box">
-    <div>
-      <label>Nama</label>
-      <input type="text" v-model="name" required />
-    </div>
-    <div>
-      <label>Phone</label>
-      <input type="text" v-model="phone" required />
-    </div>
-    <div>
-      <label>Email</label>
-      <input type="email" v-model="email" required />
-    </div>
-    <div>
-      <label>Alamat</label>
-      <input type="text" v-model="address" required />
-    </div>
-    <div>
-      <label>Asal Sekolah</label>
-      <input type="text" v-model="school" required />
-    </div>
-    <div>
-      <label>Waktu</label>
-      <input type="datetime-local" v-model="time" required />
-    </div>
-    <div class="form-actions">
-      <input type="submit" value="Kirim" />
-    </div>
-    <div class="back-button">
-      <button type="button" @click="goBack">← Kembali</button>
-    </div>
-  </form>
+  <main class="form-container">
+    <h1 class="form-title">Edit Event Baru</h1>
+    <form @submit.prevent="saveData" class="form-box">
+      <div>
+        <label>Nama</label>
+        <input type="text" v-model="name" required />
+      </div>
+      <div>
+        <label>Phone</label>
+        <input type="text" v-model="phone" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" v-model="email" required />
+      </div>
+      <div>
+        <label>Alamat</label>
+        <input type="text" v-model="address" required />
+      </div>
+      <div>
+        <label>Asal Sekolah</label>
+        <input type="text" v-model="school" required />
+      </div>
+      <div>
+        <label>Waktu</label>
+        <input type="datetime-local" v-model="time" required />
+      </div>
+      <div class="form-actions">
+        <input type="submit" value="Kirim" />
+      </div>
+      <div class="back-button">
+        <button type="button" @click="goBack">← Kembali</button>
+      </div>
+    </form>
+  </main>
 </template>
 
 <style scoped>
