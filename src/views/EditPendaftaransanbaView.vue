@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
+
+const route = useRoute();
+const id = route.params.id;
 
 const name = ref("");
 const phone = ref("");
@@ -15,7 +18,7 @@ const goBack = () => {
 };
 
 const saveData = async () => {
-  const newPendaftaransanba = JSON.stringify({
+  const pendaftaransanba = JSON.stringify({
     name: name.value,
     phone: phone.value,
     email: email.value,
@@ -23,18 +26,30 @@ const saveData = async () => {
     school: school.value,
     time: Date.parse(time.value) / 1000,
   });
-  const response = await fetch("/api/pendaftaransanbas", {
-    method: "POST",
-    body: newPendaftaransanba,
+  const response = await fetch(`/api/pendaftaransanbas/${id}`, {
+    method: "PUT",
+    body: pendaftaransanba,
   });
   const data = await response.json();
 
   router.push("/");
 };
+onMounted(() => {
+  fetch(`/api/pendaftaransanbas/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+      name.value = data.name;
+      phone.value = data.phone;
+      email.value = data.email;
+      address.value = data.address;
+      school.value = data.school;
+      time.value = new Date(data.time * 1000).toISOString().slice(0, 16);
+    });
+});
 </script>
 <template>
   <main class="form-container">
-    <h1 class="form-title">Edit Event Baru</h1>
+    <h1 class="form-title">Edit Form Baru</h1>
     <form @submit.prevent="saveData" class="form-box">
       <div class="form-group">
         <label>Nama</label>
