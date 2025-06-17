@@ -1,55 +1,68 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from "vue";
+import { RouterLink } from "vue-router";
 
 interface Pendaftaransanba {
-  id: number
-  name: string
-  phone: number
-  email: string
-  address: string
-  school: string
-  time: string
+  id: number;
+  name: string;
+  phone: number;
+  email: string;
+  address: string;
+  school: string;
+  time: string;
 }
 
-const pendaftaransanbas = ref<Pendaftaransanba[]>([])
-const loading = ref(true)
+const pendaftaransanbas = ref<Pendaftaransanba[]>([]);
+const loading = ref(true);
 
 const fetchPendaftaransanbas = async () => {
-  loading.value = true
+  loading.value = true;
   try {
-    const response = await fetch('/api/pendaftaransanbas')
-    const data = await response.json()
-    pendaftaransanbas.value = data
+    const response = await fetch("/api/pendaftaransanbas");
+    const data = await response.json();
+    pendaftaransanbas.value = data;
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 onMounted(() => {
-  fetchPendaftaransanbas()
-})
+  fetchPendaftaransanbas();
+});
 </script>
 
 <template>
   <main class="container">
-     <img src="/logo.png" alt="Logo" class="logo" />
+    <img src="/logo.png" alt="Logo" class="logo" />
     <h1 class="title">Form Pendaftaran</h1>
     <div class="link-container">
-      <RouterLink to="/pendaftaransanba" class="link-button">Daftar Disini</RouterLink>
+      <RouterLink to="/pendaftaransanba" class="link-button"
+        >Daftar Disini</RouterLink
+      >
     </div>
-     <div v-if="loading" class="loading">Memuat data...</div>
+    <div v-if="loading" class="loading">Memuat data...</div>
     <div v-else>
       <ul v-if="pendaftaransanbas.length > 0" class="pendaftar-list">
-        <li v-for="pendaftaransanba in pendaftaransanbas" :key="pendaftaransanba.id" class="pendaftar-card">
+        <li
+          v-for="pendaftaransanba in pendaftaransanbas"
+          :key="pendaftaransanba.id"
+          class="pendaftar-card"
+        >
           <div><strong>Nama:</strong> {{ pendaftaransanba.name }}</div>
           <div><strong>HP:</strong> {{ pendaftaransanba.phone }}</div>
           <div><strong>Email:</strong> {{ pendaftaransanba.email }}</div>
           <div><strong>Alamat:</strong> {{ pendaftaransanba.address }}</div>
           <div><strong>Sekolah:</strong> {{ pendaftaransanba.school }}</div>
-          <div><strong>Waktu Daftar:</strong> {{ new Date(Number(pendaftaransanba.time) * 1000).toLocaleString() }}</div>
+          <div>
+            <strong>Waktu Daftar:</strong>
+            {{
+              new Date(Number(pendaftaransanba.time) * 1000).toLocaleString()
+            }}
+          </div>
           <div class="edit-link">
-            <RouterLink :to="`/pendaftaransanba/${pendaftaransanba.id}`">Edit</RouterLink>
+            <RouterLink :to="`/pendaftaransanba/${pendaftaransanba.id}`"
+              >Edit</RouterLink
+            >
           </div>
         </li>
       </ul>
