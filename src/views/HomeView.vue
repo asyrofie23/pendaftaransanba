@@ -3,9 +3,9 @@ import { ref, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 
 interface Pendaftaransanba {
-  id: string;
+  id: number;
   name: string;
-  phone: string;
+  phone: number;
   email: string;
   address: string;
   school: string;
@@ -29,15 +29,6 @@ const fetchPendaftaransanbas = async () => {
 onMounted(() => {
   fetchPendaftaransanbas();
 });
-
-const removePendaftaransanba = async (id: string) => {
-  const response = await fetch(`/api/pendaftaransanbas/${id}`, {
-    method: "DELETE",
-  });
-  if (response.ok) {
-    fetchPendaftaransanbas();
-  }
-};
 </script>
 
 <template>
@@ -72,11 +63,6 @@ const removePendaftaransanba = async (id: string) => {
             <RouterLink :to="`/pendaftaransanba/${pendaftaransanba.id}`"
               >Edit</RouterLink
             >
-          </div>
-          <div>
-            <button @click="removePendaftaransanba(pendaftaransanba.id)">
-              Hapus Data
-            </button>
           </div>
         </li>
       </ul>
