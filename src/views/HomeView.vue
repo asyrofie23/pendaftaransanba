@@ -40,9 +40,20 @@ const removePendaftaransanba = async (id: string) => {
 </script>
 
 <template>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">PONDOK PESANTREN ALBERR</div>
+      <ul class="navbar-links">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="/tentang">Tentang</a></li>
+        <li><a href="/formulir">Formulir</a></li>
+        <li><a href="/kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
   <main class="container">
     <img src="/logo.png" alt="Logo" class="logo" />
-    <h1 class="title">Form Pendaftaran</h1>
+    <h1 class="title">Form Pendaftaran Santri Baru 2025</h1>
     <div class="link-container">
       <RouterLink to="/pendaftaransanba" class="link-button"
         >Daftar Disini</RouterLink
@@ -82,6 +93,16 @@ const removePendaftaransanba = async (id: string) => {
       <div v-else class="empty">Tidak ada pendaftar.</div>
     </div>
   </main>
+  <!-- <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2025 Sanba Institute. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="/kebijakan">Kebijakan Privasi</a></li>
+        <li><a href="/syarat">Syarat & Ketentuan</a></li>
+        <li><a href="/kontak">Kontak Kami</a></li>
+      </ul>
+    </div>
+  </footer> -->
 </template>
 
 <style scoped>
@@ -160,4 +181,83 @@ const removePendaftaransanba = async (id: string) => {
   max-width: 120px;
   margin: 0 auto 1rem auto;
 }
+
+/* navbar */
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 0;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-links li a:hover {
+  color: #1abc9c;
+}
+
+/* footer */
+/* .footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer p {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-links li a:hover {
+  color: #1abc9c;
+} */
 </style>
