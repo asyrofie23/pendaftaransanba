@@ -9,16 +9,21 @@ const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/api/pendaftaransanbas", async (c) => {
   let { results } = await c.env.DB.prepare("SELECT * FROM users").all();
+  console.log(results);
   return c.json(results);
 });
 app.post("/api/pendaftaransanbas", async (c) => {
-  const newId = crypto.randomUUID();
-  const input = await c.req.json<any>();
-  const query = `INSERT INTO users(id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
-  const newUser = await c.env.DB.exec(query);
-  return c.json(newUser);
+  try {
+    const newId = crypto.randomUUID();
+    const input = await c.req.json<any>();
+    const query = `INSERT INTO users (id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
+    const newUser = await c.env.DB.exec(query);
+    return c.json(newUser);
+  } catch (error) {
+    console.error("Error in POST /api/pendaftaransanbas:", error);
+  }
 });
-
+//query adalah suatu command yang bisa digunakan di database
 app.get("/api/pendaftaransanbas/:id", async (c) => {
   const userId = c.req.param("id");
   let { results } = await c.env.DB.prepare("SELECT * FROM users WHERE id = ?")

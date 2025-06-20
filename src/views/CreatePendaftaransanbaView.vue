@@ -35,6 +35,17 @@ const saveData = async () => {
 </script>
 
 <template>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">Sanba Institute</div>
+      <ul class="navbar-links">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="/tentang">Tentang</a></li>
+        <li><a href="/formulir">Formulir</a></li>
+        <li><a href="/kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
   <main class="form-container">
     <h1 class="form-title">Isi Formulir Disini</h1>
     <form @submit.prevent="saveData" class="form-box">
@@ -154,5 +165,44 @@ const saveData = async () => {
 
 .back-button button:hover {
   background-color: #d5d5d5;
+}
+
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 0;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-links li a:hover {
+  color: #1abc9c;
 }
 </style>
