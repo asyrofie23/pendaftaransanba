@@ -1,6 +1,5 @@
 -- Migration number: 0003 	 2025-06-20T14:50:33.157Z
-DROP TABLE IF EXISTS users;
-drop TABLE IF EXISTS kategori;
+
 CREATE TABLE IF NOT EXISTS users (
     id TEXT PRIMARY KEY ,
     name TEXT NOT NULL,
