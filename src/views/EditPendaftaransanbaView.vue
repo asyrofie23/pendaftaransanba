@@ -5,7 +5,7 @@ import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 
 const route = useRoute();
-const id = route.params.id;
+const id = route.params.id; //mengambil nilai :id dari URL.
 
 const name = ref("");
 const phone = ref("");
@@ -19,6 +19,7 @@ const goBack = () => {
 
 const saveData = async () => {
   const pendaftaransanba = JSON.stringify({
+    //Membuat objek JSON yang berisi data dari form.
     name: name.value,
     phone: phone.value,
     email: email.value,
@@ -27,6 +28,7 @@ const saveData = async () => {
     time: Date.parse(time.value) / 1000,
   });
   const response = await fetch(`/api/pendaftaransanbas/${id}`, {
+    //Mengirim data ke backend dengan metode PUT, ke endpoint
     method: "PUT",
     body: pendaftaransanba,
   });

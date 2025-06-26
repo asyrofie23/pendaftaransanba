@@ -15,7 +15,19 @@ app.get("/api/pendaftaransanbas", async (c) => {
   return c.json(results);
 });
 app.post("/api/pendaftaransanbas", async (c) => {
-  // untuk menyimpan data pendaftaran baru ke dalam tabel users di database.
+  //Fungsinya adalah untuk menyimpan data pendaftaran baru ke dalam tabel users di database.
+  try {
+    const newId = crypto.randomUUID(); //Menghasilkan ID unik baru untuk pengguna baru menggunakan crypto.randomUUID().
+    const input = await c.req.json<any>(); //Mengambil data JSON yang dikirim oleh klien (body dari request).
+    const query = `INSERT INTO users (id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
+    //Membuat query SQL INSERT INTO untuk memasukkan data user baru ke tabel users. Nilai-nilai diambil dari variabel input dan newId.
+
+    const newUser = await c.env.DB.exec(query); //Mengeksekusi query SQL ke database melalui c.env.DB.
+    return c.json(newUser); //Mengembalikan hasil eksekusi query sebagai respons JSON.
+  } catch (error) {
+    //Jika ada error (misal query salah, data tidak lengkap, dsb), error akan ditampilkan di konsol.
+    console.error("Error in POST /api/pendaftaransanbas:", error);
+  }
 });
 app.get("/api/pendaftaransanbas/:id", async (c) => {
   const userId = c.req.param("id"); //Mengambil nilai dari parameter :id di URL
