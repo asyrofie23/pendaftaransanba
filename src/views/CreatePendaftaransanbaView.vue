@@ -39,7 +39,7 @@ const saveData = async () => {
 <template>
   <nav class="navbar">
     <div class="navbar-container">
-      <div class="navbar-logo">Sanba Institute</div>
+      <div class="navbar-logo">PONDOK PESANTREN ALBERR</div>
       <ul class="navbar-links">
         <li><a href="/">Beranda</a></li>
         <li><a href="/tentang">Tentang</a></li>
