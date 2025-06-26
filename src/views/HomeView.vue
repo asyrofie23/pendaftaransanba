@@ -90,12 +90,6 @@ const removePendaftaransanba = async (id: string) => {
               Hapus Data
             </button>
           </div>
-          <button
-            @click="removePendaftaransanba(pendaftaransanba.id)"
-            class="delete-button"
-          >
-            Hiiii
-          </button>
         </li>
       </ul>
       <div v-else class="empty">Tidak ada pendaftar.</div>

@@ -17,10 +17,10 @@ app.get("/api/pendaftaransanbas", async (c) => {
 app.post("/api/pendaftaransanbas", async (c) => {
   //Fungsinya adalah untuk menyimpan data pendaftaran baru ke dalam tabel users di database.
   try {
-    const newId = crypto.randomUUID(); //Menghasilkan ID unik baru untuk pengguna baru menggunakan crypto.randomUUID().
-    const input = await c.req.json<any>(); //Mengambil data JSON yang dikirim oleh klien (body dari request).
+    const newId = crypto.randomUUID(); //Menghasilkan ID unik baru untuk pengguna baru
+    const input = await c.req.json<any>(); //Mengambil data JSON
     const query = `INSERT INTO users (id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
-    //Membuat query SQL INSERT INTO untuk memasukkan data user baru ke tabel users. Nilai-nilai diambil dari variabel input dan newId.
+    //Membuat query SQL INSERT INTO untuk memasukkan data user baru ke tabel users.
 
     const newUser = await c.env.DB.exec(query); //Mengeksekusi query SQL ke database melalui c.env.DB.
     return c.json(newUser); //Mengembalikan hasil eksekusi query sebagai respons JSON.
