@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 
 interface Pendaftaransanba {
+  //dibuat untuk kerangka
   id: string;
   name: string;
   phone: string;
@@ -12,8 +13,12 @@ interface Pendaftaransanba {
   time: string;
 }
 
-const pendaftaransanbas = ref<Pendaftaransanba[]>([]);
+const pendaftaransanbas = ref<Pendaftaransanba[]>([]); //variable untuk menyimpan data yang sama dengan yang di interface pendaftaransanba
 const loading = ref(true);
+
+onMounted(() => {
+  fetchPendaftaransanbas();
+});
 
 const fetchPendaftaransanbas = async () => {
   loading.value = true;
@@ -26,9 +31,6 @@ const fetchPendaftaransanbas = async () => {
   }
 };
 
-onMounted(() => {
-  fetchPendaftaransanbas();
-});
 const removePendaftaransanba = async (id: string) => {
   const response = await fetch(`/api/pendaftaransanbas/${id}`, {
     method: "DELETE",
@@ -88,6 +90,12 @@ const removePendaftaransanba = async (id: string) => {
               Hapus Data
             </button>
           </div>
+          <button
+            @click="removePendaftaransanba(pendaftaransanba.id)"
+            class="delete-button"
+          >
+            Hiiii
+          </button>
         </li>
       </ul>
       <div v-else class="empty">Tidak ada pendaftar.</div>

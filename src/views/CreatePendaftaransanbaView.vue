@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-
+//ref("") berarti nilai awalnya adalah string kosong.
 const name = ref("");
 const phone = ref("");
 const email = ref("");
@@ -15,7 +15,9 @@ const goBack = () => {
 };
 
 const saveData = async () => {
+  //Fungsi asinkron yang akan dijalankan saat user klik tombol "Simpan" atau "Submit". Tujuannya adalah mengirim data ke backend.
   const newPendaftaransanba = JSON.stringify({
+    //Membuat objek JSON yang berisi data dari form.
     name: name.value,
     phone: phone.value,
     email: email.value,
@@ -25,12 +27,13 @@ const saveData = async () => {
   });
 
   const response = await fetch("/api/pendaftaransanbas", {
+    //Mengirimkan data ke API backend menggunakan HTTP POST ke /api/pendaftaransanbas.
     method: "POST",
     body: newPendaftaransanba,
   });
   const data = await response.json();
 
-  router.push("/");
+  router.push("/"); //Setelah data berhasil dikirim, user akan diarahkan kembali ke halaman utama
 };
 </script>
 
@@ -46,6 +49,7 @@ const saveData = async () => {
       </ul>
     </div>
   </nav>
+
   <main class="form-container">
     <h1 class="form-title">Isi Formulir Disini</h1>
     <form @submit.prevent="saveData" class="form-box">
