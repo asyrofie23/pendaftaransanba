@@ -18,6 +18,7 @@ const goBack = () => {
 };
 
 const saveData = async () => {
+  //Dijalankan saat user klik tombol "Simpan".
   const pendaftaransanba = JSON.stringify({
     //Membuat objek JSON yang berisi data dari form.
     name: name.value,
@@ -28,6 +29,7 @@ const saveData = async () => {
     time: Date.parse(time.value) / 1000,
   });
   const response = await fetch(`/api/pendaftaransanbas/${id}`, {
+    //memperbarui data
     //Mengirim data ke backend dengan metode PUT, ke endpoint
     method: "PUT",
     body: pendaftaransanba,
@@ -37,15 +39,16 @@ const saveData = async () => {
   router.push("/");
 };
 onMounted(() => {
-  fetch(`/api/pendaftaransanbas/${id}`)
-    .then((response) => response.json())
+  //dijalankan sekali saat komponen dimuat pertama kali.
+  fetch(`/api/pendaftaransanbas/${id}`) //mengambil data user
+    .then((response) => response.json()) //mengambil dan memproses data dari response fetch
     .then((data) => {
       name.value = data.name;
       phone.value = data.phone;
       email.value = data.email;
       address.value = data.address;
       school.value = data.school;
-      time.value = new Date(data.time * 1000).toISOString().slice(0, 16);
+      time.value = new Date(data.time * 1000).toISOString().slice(0, 10);
     });
 });
 </script>

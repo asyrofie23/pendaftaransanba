@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-//ref("") berarti nilai awalnya adalah string kosong.
 const name = ref("");
 const phone = ref("");
 const email = ref("");
@@ -75,7 +74,7 @@ const saveData = async () => {
       </div>
       <div class="form-group">
         <label>Waktu</label>
-        <input type="datetime-local" v-model="time" required />
+        <input type="date" v-model="time" required />
       </div>
       <div class="form-actions">
         <input type="submit" value="Kirim" />

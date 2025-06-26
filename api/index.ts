@@ -22,10 +22,9 @@ app.post("/api/pendaftaransanbas", async (c) => {
     const query = `INSERT INTO users (id,name,phone,email,address,school,time) values ("${newId}","${input.name}","${input.phone}","${input.email}","${input.address}","${input.school}",${input.time})`;
     //Membuat query SQL INSERT INTO untuk memasukkan data user baru ke tabel users.
 
-    const newUser = await c.env.DB.exec(query); //Mengeksekusi query SQL ke database melalui c.env.DB.
-    return c.json(newUser); //Mengembalikan hasil eksekusi query sebagai respons JSON.
+    const newUser = await c.env.DB.exec(query); //Mengeksekusi query SQL ke database
+    return c.json(newUser);
   } catch (error) {
-    //Jika ada error (misal query salah, data tidak lengkap, dsb), error akan ditampilkan di konsol.
     console.error("Error in POST /api/pendaftaransanbas:", error);
   }
 });
@@ -38,7 +37,7 @@ app.get("/api/pendaftaransanbas/:id", async (c) => {
 });
 
 app.put("/api/pendaftaransanbas/:id", async (c) => {
-  //endpoint HTTP PUT untuk mengubah data pendaftar berdasarkan id
+  //mengubah data pendaftar berdasarkan id
   const userId = c.req.param("id");
   const input = await c.req.json<any>();
   const query = `UPDATE users SET name = "${input.name}", phone = "${input.phone}", email = "${input.email}", address = "${input.address}", school = "${input.school}", time = ${input.time} WHERE id = "${userId}"`;
