@@ -17,11 +17,12 @@ const pendaftaransanbas = ref<Pendaftaransanba[]>([]); //variable untuk menyimpa
 const loading = ref(true);
 
 onMounted(() => {
-  fetchPendaftaransanbas();
+  ////dijalankan sekali saat komponen dimuat kehalaman
+  fetchPendaftaransanbas(); //mengambil data dari server
 });
 
 const fetchPendaftaransanbas = async () => {
-  loading.value = true;
+  loading.value = true; //menampilkan indikator saat proses ambil data.
   try {
     const response = await fetch("/api/pendaftaransanbas");
     const data = await response.json();
@@ -32,6 +33,7 @@ const fetchPendaftaransanbas = async () => {
 };
 
 const removePendaftaransanba = async (id: string) => {
+  //menghapus data pendaftar berdasarkan ID
   const response = await fetch(`/api/pendaftaransanbas/${id}`, {
     method: "DELETE",
   });
@@ -95,16 +97,6 @@ const removePendaftaransanba = async (id: string) => {
       <div v-else class="empty">Tidak ada pendaftar.</div>
     </div>
   </main>
-  <!-- <footer class="footer">
-    <div class="footer-container">
-      <p>&copy; 2025 Sanba Institute. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="/kebijakan">Kebijakan Privasi</a></li>
-        <li><a href="/syarat">Syarat & Ketentuan</a></li>
-        <li><a href="/kontak">Kontak Kami</a></li>
-      </ul>
-    </div>
-  </footer> -->
 </template>
 
 <style scoped>
